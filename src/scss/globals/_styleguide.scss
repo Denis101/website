@@ -14,7 +14,7 @@ body {
 // Headings
 h1 {
   font-family: $heading-font-family;
-  margin-bottom: rem(20px);
+  margin-bottom: rem(15px);
 }
 
 // Lists
@@ -25,6 +25,8 @@ ul, ol {
 
 // Links
 a {
+  margin-right: rem(10px);
+
     &:link, &:visited {
         color: $body_copy;
     }
@@ -35,7 +37,7 @@ a {
 }
 
 p {
-    margin: rem(20px) 0;
+    margin: rem(15px) 0;
 }
 
 .button {
@@ -80,8 +82,8 @@ img {
 }
 
 .mail, .twitter, .linkedin {
-  width: rem(32px);
-  height: rem(32px);
+  width: rem(16px);
+  height: rem(16px);
 }
 
 .spacer-bottom {
