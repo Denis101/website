@@ -84,10 +84,6 @@ img {
 .mail, .twitter, .linkedin {
   width: rem(24px);
   height: rem(24px);
-
-  &:hover {
-    background: $blue;
-  }
 }
 
 .spacer-bottom {
