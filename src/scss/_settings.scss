@@ -1,0 +1,39 @@
+
+// Compass settings
+// ================
+$browser-default-font-size: 16px;
+$base-font-size: 16px; // Set the base font size for the site's body text.
+
+@import 'susy';
+
+// Grid/layout settings
+// =============
+// Gutters
+$gutter-width: 21px;
+
+// Susy
+$susy: (
+  flow: ltr,
+  output: float,
+  math: fluid,
+  column-width: 86px,
+  container: auto,
+  container-position: center,
+  last-flow: to,
+  columns: 12,
+  gutters: 21px/86px,
+  gutter-position: after,
+  global-box-sizing: content-box,
+);
+
+// Colour pallette
+// ===============
+$body_copy:#000; // Black
+$blue: #54ACBF;
+
+// Font settings
+// ===============
+$base-font-family: 'Open Sans', sans-serif;
+$heading-font-family: 'Lobster', cursive;
+
+$v-spacing: gutter();
