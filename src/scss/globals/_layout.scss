@@ -11,11 +11,25 @@ body {
 .container {
 	width: span(4);
 	margin: rem(100px) auto;
+
+	@include breakpoint($bp-red) {
+		width: span(8);
+		margin: rem(100px) auto;
+	}
+
+	@include breakpoint($bp-blue) {
+		width: span(12);
+		margin: rem(10px) auto;
+	}
 }
 
 .main-content {
 	width: span(10);
 	text-align: center;
+
+	@include breakpoint($bp-blue) {
+		margin: 0 auto;
+	}
 }
 
 .contact {
