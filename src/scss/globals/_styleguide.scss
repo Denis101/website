@@ -14,6 +14,7 @@ body {
 // Headings
 h1 {
   font-family: $heading-font-family;
+  margin-bottom: rem(20px);
 }
 
 // Lists
@@ -33,23 +34,8 @@ a {
     }
 }
 
-.contact a {
-  display: block;
-  text-decoration: none;
-  color: $blue;
-  margin-bottom: rem(5px);
-  vertical-align: middle;
-  height: rem(32px);
-
-  span {
-    display: inline-block;
-    vertical-align: top;
-    padding: rem(3px) 0 0 rem(16px);
-  }
-}
-
 p {
-    margin-bottom: rem(35px);
+    margin: rem(20px) 0;
 }
 
 .button {
