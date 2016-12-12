@@ -1,0 +1,86 @@
+---
+- hosts: web
+  remote_user: vagrant
+  become: true
+  tasks:
+
+  - name: Install tools
+    apt: name={{ item }} state=latest update_cache=yes
+    with_items:
+      - python-pip
+      - git
+      - rsync
+      - netcat
+      - ntp
+      - unzip
+      - python-setuptools
+      - supervisor
+
+  - name: Install pip
+    easy_install: name=pip state=latest
+
+  - name: Install AWS CLI
+    pip: name=awscli
+
+  - name: Install node.js
+    apt: name={{ item }} state=installed
+    with_items:
+      - nodejs
+      - npm
+
+  - name: Install node tools
+    npm: name={{ item }} global=yes
+    with_items:
+      - n
+      - aws-sdk
+
+  - name: Update node.js
+    shell: n stable
+
+  - name: Install NPM packages
+    npm: path=/vagrant
+    become: true
+
+  - name: Install nginx
+    apt: name={{ item }} state=latest
+    with_items:
+      - nginx
+      - openssl
+
+  - name: Upload scripts
+    copy: src=scripts/ dest=/tmp/ mode=0755
+
+  - name: Create application PKI directory
+    file: path=/etc/ssl/private state=directory
+
+  - name: Install CA PKI config
+    copy: src={{ item }} dest=/etc/ssl/private
+    with_fileglob:
+      - config/pki/*
+
+  - name: Create application certificate
+    shell: /tmp/generate_cert deniscraig.dev
+    register: pki
+
+  - name: Configure environment
+    shell: /tmp/env_vars
+
+  - name: Setup terraform
+    shell: /tmp/setup_terraform
+
+  - name: Configure nginx
+    template:
+      src: config/nginx/nginx.conf
+      dest: /etc/nginx/nginx.conf
+      owner: vagrant
+      group: vagrant
+      mode: 0644
+    notify:
+      - Restart nginx
+
+  - name: Start nginx
+    service: name=nginx state=started
+
+  handlers:
+    - name: Restart nginx
+      service: name=nginx state=restarted
